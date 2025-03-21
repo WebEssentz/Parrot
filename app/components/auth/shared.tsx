@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import { useTheme } from "next-themes";
 import { BrainCircuit } from "lucide-react";
 import Link from "next/link";

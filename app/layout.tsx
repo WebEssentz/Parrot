@@ -44,7 +44,7 @@ export default function RootLayout({
           sora.variable,
           GeistSans.variable,
           GeistMono.variable,
-          "py-8 px-6 lg:p-10 text-white bg-background min-h-dvh flex flex-col justify-between antialiased font-sans select-none overflow-hidden"
+          "min-h-dvh flex flex-col antialiased font-sans select-none overflow-hidden bg-background"
         )}
         suppressHydrationWarning
       >
@@ -54,9 +54,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <main className="flex flex-col items-center justify-center grow">
-            {children}
-          </main>
+          {children}
         </ThemeProvider>
         <Toaster richColors theme="system" />
         <Analytics />

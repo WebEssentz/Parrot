@@ -6,7 +6,7 @@ import "../../app/globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from '@clerk/nextjs';
-import { SidebarProvider } from "@/app/components/ui/sidebar";
+// import { SidebarProvider } from "@/app/components/ui/sidebar";
 
 export const metadata: Metadata = {
 	title: "Parrot",
@@ -35,7 +35,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <SidebarProvider>
+    // <SidebarProvider>
     <html lang="en">
       <body
         className={clsx(
@@ -58,6 +58,6 @@ export default function Layout({
         )}
       </body>
     </html>
-    </SidebarProvider>
+    // </SidebarProvider>
   );
 }

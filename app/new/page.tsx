@@ -4,7 +4,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { useActionState, useEffect, useRef, useState, useCallback } from "react";
 import { toast } from "sonner";
 import { EnterIcon, LoadingIcon } from "@/lib/icons";
-import { usePlayer } from "@/lib/usePlayer";
+import { usePlayer } from "@/app/lib/usePlayer";
 import { track } from "@vercel/analytics";
 import { useMicVAD, utils } from "@ricky0123/vad-react";
 import { Command, Search, Wand2, Code2, Brain, MessageSquareText, Settings, HelpCircle, ChevronDown, MenuIcon, PlusIcon, Pen } from 'lucide-react';
@@ -372,42 +372,25 @@ export default function Home() {
         <main className="h-dvh flex-grow flex-shrink relative selection:bg-highlight w-0 @container">
           <header className="fixed top-0 left-0 right-0 h-16 z-50 bg-background/80 backdrop-blur-sm">
             <div className="h-full w-full max-w-[90rem] mx-auto px-4">
-              <div className="relative flex items-center h-full w-full" style={{ 
-                justifyContent: isMobile ? 'space-between' : 'flex-start',
-                gap: isMobile ? '0' : '1rem'
-              }}>
-                {/* Left side - Menu (mobile) or Logo (desktop) */}
-                <div className="flex-none lg:flex-1" style={{
-                  width: isMobile ? 'auto' : '33.333%'
-                }}>
-                  <button 
-                    type="button" 
-                    aria-label="Menu"
-                    className="lg:hidden inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium text-primary hover:bg-button-ghost-hover h-10 w-10 rounded-full"
-                  >
-                    <MenuIcon className="size-5" />
-                  </button>
-                  <div className="hidden lg:flex lg:items-center" style={{
-                    paddingLeft: windowWidth > 1600 ? '2rem' : '1rem'
-                  }}>
-                    <a href="/" className="text-primary font-medium">
-                      Parrot
-                    </a>
-                  </div>
-                </div>
+              <div className="relative flex items-center h-full w-full gap-4">
+                {/* Menu button - always visible on mobile, hidden on desktop */}
+                <button 
+                  type="button" 
+                  aria-label="Menu"
+                  className="lg:hidden inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium text-primary hover:bg-button-ghost-hover h-10 w-10 rounded-full"
+                >
+                  <MenuIcon className="size-5" />
+                </button>
 
-                {/* Center - Logo for mobile only */}
-                <div className="absolute left-1/2 -translate-x-1/2 lg:hidden">
-                  <a href="/" className="text-primary font-medium">
+                {/* Logo - centered on mobile, left-aligned on desktop */}
+                <div className="flex-1 text-center lg:text-left">
+                  <a href="/" className="text-primary font-medium inline-block">
                     Parrot
                   </a>
                 </div>
 
-                {/* Right side - Search and User buttons */}
-                <div className="flex items-center gap-3 flex-none ml-auto" style={{
-                  paddingRight: windowWidth > 1600 ? '2rem' : '1rem'
-                }}>
-                  {/* Search button - shown on both mobile and desktop */}
+                {/* Search and user buttons */}
+                <div className="flex items-center gap-3">
                   <button
                     type="button"
                     className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium text-primary hover:bg-button-ghost-hover h-10 w-10 rounded-full"

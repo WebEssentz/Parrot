@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
+import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import clsx from "clsx";
-import "./globals.css";
+import "../../app/globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
-import { inter, jetbrains, manrope, sora } from '../app/lib/fonts'
-import { ThemeProvider } from "next-themes";
+import { ClerkProvider } from '@clerk/nextjs';
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
-	title: "parrot Enterprise AI Assistant",
+	title: "Parrot",
 	description:
 		"An enterprise-grade voice assistant powered by Deepseek, Groq, Cartesia, and Vercel.",
 	authors: [{ name: "Godwin" }],
@@ -22,45 +22,42 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		type: "website",
-		title: "parrot Enterprise AI Assistant",
+		title: "Parrot",
 		description: "An enterprise-grade voice assistant with thinking capabilities",
 		url: "/",
 		images: [{ url: "/og-image.png" }],
 	},
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <SidebarProvider>
+    <html lang="en">
       <body
         className={clsx(
-          inter.variable,
-          jetbrains.variable,
-          manrope.variable,
-          sora.variable,
           GeistSans.variable,
           GeistMono.variable,
-          "py-8 px-6 lg:p-10 text-white bg-background min-h-dvh flex flex-col justify-between antialiased font-sans select-none overflow-hidden"
+          "py-8 px-6 lg:p-10 dark:text-white bg-white dark:bg-black min-h-dvh flex flex-col justify-between antialiased font-sans select-none"
         )}
-        suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
+        <ClerkProvider>
           <main className="flex flex-col items-center justify-center grow">
             {children}
           </main>
-        </ThemeProvider>
-        <Toaster richColors theme="system" />
-        <Analytics />
+        </ClerkProvider>
+
+        {typeof window !== 'undefined' && (
+          <>
+            <Toaster richColors theme="system" />
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
+    </SidebarProvider>
   );
 }

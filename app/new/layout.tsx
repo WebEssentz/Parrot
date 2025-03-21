@@ -6,7 +6,7 @@ import "../../app/globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from '@clerk/nextjs';
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/app/components/ui/sidebar";
 
 export const metadata: Metadata = {
 	title: "Parrot",

@@ -7,7 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { BsGithub, BsMicrosoft } from 'react-icons/bs';
 import Link from "next/link";
 import { useState } from "react";
-import { AuthContainer, OAuthButton } from "@/components/auth/shared";
+import { AuthContainer, OAuthButton } from "@/app/components/auth/shared";
 
 
 const getTimeBasedGreeting = () => {

@@ -6,6 +6,7 @@ import "../../app/globals.css";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from '@clerk/nextjs';
+import { ThemeProvider } from "next-themes";
 // import { SidebarProvider } from "@/app/components/ui/sidebar";
 
 export const metadata: Metadata = {
@@ -45,9 +46,17 @@ export default function Layout({
         )}
       >
         <ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="parrot-theme"
+        >
           <main className="flex flex-col items-center justify-center grow">
             {children}
           </main>
+        </ThemeProvider>
         </ClerkProvider>
 
         {typeof window !== 'undefined' && (
